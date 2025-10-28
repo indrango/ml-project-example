@@ -1,0 +1,29 @@
+# OS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.venv/
+venv/
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+logs/
+*.log
+
+# Ultralytics runs and artifacts
+runs/
+
+# Model weights (prevent large files in git)
+*.pt
+*.onnx
+*.engine
