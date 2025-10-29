@@ -60,11 +60,20 @@ Environment variables:
 - `MAX_DETECTIONS` (default: `300`)
 
 ## Docker
-Build and run:
+
+### Build and Run
 ```bash
 docker build -t yolo-serving .
 docker run --rm -p 8000:8000 -e MODEL_NAME=yolov8n.pt yolo-serving
 ```
+
+### Docker Optimizations
+- Multi-stage build separates build tools from runtime image
+- Pip cache mount reduces rebuild time significantly
+- Staged dependency installation reduces peak memory usage
+- Final image excludes build-essential (smaller size)
+- Optimized for cloud platforms like DigitalOcean App Platform
+- Build completes in ~2-3 minutes with ~1-2GB memory usage
 
 ## Notes
 - First request triggers model download if not present; cache persists in the container layer.
