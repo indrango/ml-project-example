@@ -24,6 +24,6 @@ logs/
 runs/
 
 # Model weights (prevent large files in git)
-*.pt
-*.onnx
-*.engine
+# *.pt
+# *.onnx
+# *.engine
