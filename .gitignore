@@ -27,3 +27,7 @@ runs/
 # *.pt
 # *.onnx
 # *.engine
+
+# Modal
+.modal_cache/
+modal_token.txt

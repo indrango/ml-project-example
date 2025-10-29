@@ -1,0 +1,5 @@
+# Modal-specific requirements
+# Install with: pip install -r modal_requirements.txt
+
+modal>=0.60.0
+

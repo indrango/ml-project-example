@@ -75,6 +75,40 @@ docker run --rm -p 8000:8000 -e MODEL_NAME=yolov8n.pt yolo-serving
 - Optimized for cloud platforms like DigitalOcean App Platform
 - Build completes in ~2-3 minutes with ~1-2GB memory usage
 
+## Modal Deployment
+
+### Quick Deploy to Modal
+
+1. **Install Modal CLI**:
+```bash
+pip install modal
+```
+
+2. **Authenticate**:
+```bash
+modal token new
+```
+
+3. **Deploy**:
+```bash
+modal deploy modal.py
+```
+
+4. **Test the endpoint**:
+```bash
+curl https://<your-app>.modal.run/api/health
+```
+
+### Features
+- ✅ GPU-accelerated inference (A10G GPU)
+- ✅ Auto-scaling based on traffic
+- ✅ Pay-per-use pricing
+- ✅ Fast cold starts
+- ✅ HTTPS endpoint included
+
+### Documentation
+See [MODAL_DEPLOYMENT.md](MODAL_DEPLOYMENT.md) for detailed deployment guide.
+
 ## Notes
 - First request triggers model download if not present; cache persists in the container layer.
 - For GPU serving, use a CUDA-enabled base image and set `DEVICE=cuda` if your platform provides GPUs.
