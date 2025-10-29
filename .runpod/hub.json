@@ -1,0 +1,67 @@
+{
+  "title": "YOLOv8 Object Detection API",
+  "description": "Fast and accurate object detection using YOLOv8 nano model. Supports base64 images and URLs. Deploy on RunPod for on-demand image detection.",
+  "type": "serverless",
+  "category": "image",
+  "iconUrl": "https://github.com/ultralytics/assets/releases/download/v8.3.0/YOLOv8n.pt",
+  "config": {
+    "runsOn": "GPU",
+    "containerDiskInGb": 20,
+    "handler": "handler.py",
+    "presets": [
+      {
+        "name": "Standard",
+        "defaults": {
+          "method": "predict",
+          "image_url": "https://ultralytics.com/images/bus.jpg"
+        }
+      },
+      {
+        "name": "Custom Model",
+        "defaults": {
+          "method": "predict",
+          "image_url": "https://ultralytics.com/images/bus.jpg",
+          "model": "yolov8s.pt"
+        }
+      }
+    ],
+    "env": [
+      {
+        "key": "MODEL_NAME",
+        "input": {
+          "name": "YOLO Model",
+          "type": "string",
+          "description": "YOLOv8 model to use (yolov8n.pt, yolov8s.pt, yolov8m.pt, yolov8l.pt, yolov8x.pt)",
+          "default": "yolov8n.pt"
+        }
+      },
+      {
+        "key": "DEVICE",
+        "input": {
+          "name": "Device",
+          "type": "string",
+          "description": "Device to use for inference (cpu, cuda)",
+          "default": "cuda"
+        }
+      },
+      {
+        "key": "CONF_THRESHOLD",
+        "input": {
+          "name": "Confidence Threshold",
+          "type": "float",
+          "description": "Confidence threshold for detections (0.0-1.0)",
+          "default": 0.25
+        }
+      },
+      {
+        "key": "IOU_THRESHOLD",
+        "input": {
+          "name": "IoU Threshold",
+          "type": "float",
+          "description": "Intersection over Union threshold for NMS (0.0-1.0)",
+          "default": 0.45
+        }
+      }
+    ]
+  }
+}

@@ -75,6 +75,48 @@ docker run --rm -p 8000:8000 -e MODEL_NAME=yolov8n.pt yolo-serving
 - Optimized for cloud platforms like DigitalOcean App Platform
 - Build completes in ~2-3 minutes with ~1-2GB memory usage
 
+## RunPod Deployment
+
+### Deploy on RunPod
+
+This project includes RunPod serverless configuration for GPU deployments.
+
+**Files:**
+- `handler.py` - RunPod serverless handler
+- `.runpod/hub.json` - Hub configuration
+- `.runpod/tests.json` - Test suite
+- `Dockerfile.runpod` - GPU-optimized Dockerfile
+
+**Deploy to RunPod:**
+
+1. Build and push Docker image to a registry
+2. Import the pod from RunPod Hub
+3. Configure environment variables as needed
+
+**Handler Input:**
+```json
+{
+  "input": {
+    "method": "predict",
+    "image_url": "https://example.com/image.jpg"
+  }
+}
+```
+
+**Handler Output:**
+```json
+{
+  "status": "success",
+  "data": {
+    "model": "yolov8n.pt",
+    "num_detections": 3,
+    "detections": [...]
+  }
+}
+```
+
+See `.runpod/` directory for configuration details.
+
 ## Notes
 - First request triggers model download if not present; cache persists in the container layer.
 - For GPU serving, use a CUDA-enabled base image and set `DEVICE=cuda` if your platform provides GPUs.

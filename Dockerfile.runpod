@@ -1,0 +1,26 @@
+# Dockerfile for RunPod GPU deployment
+FROM ultralytics/ultralytics:latest
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    MODEL_NAME=yolov8n.pt \
+    DEVICE=cuda
+
+WORKDIR /app
+
+# Install dependencies
+RUN pip install --no-cache-dir \
+    fastapi==0.115.2 \
+    "uvicorn[standard]==0.30.6" \
+    pydantic==2.9.2 \
+    python-multipart==0.0.9 \
+    runpod==1.8.0 \
+    requests==2.32.5
+
+# Copy application code
+COPY app ./app
+COPY handler.py .
+
+# RunPod serverless handler
+CMD ["python", "handler.py"]
+
