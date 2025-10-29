@@ -19,4 +19,4 @@ app.include_router(api_router, prefix="/api")
 
 @app.get("/")
 async def root() -> dict[str, str]:
-    return {"message": "YOLOv8 Tiny model serving is running", "docs": "/docs"}
+    return {"message": "Welcome, YOLOv8 Tiny model serving is running", "docs": "/docs"}
